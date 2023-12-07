@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    
+    <script>
+      $(function () {
+        "use strict";
+        var url = window.location + "";
+        var path = url.split("/").pop();
+        var element = $("ul#sidebarnav a").filter(function () {
+          return $(this).hasClass(path); // || url.href.indexOf(this.href) === 0;
+        });
+        element.parentsUntil(".sidebar-nav").each(function (index) {
+          if ($(this).is("li") && $(this).children("a").length !== 0) {
+            $(this).children("a").addClass("active");
+            $(this).parent("ul#sidebarnav").length === 0
+              ? $(this).addClass("active")
+              : $(this).addClass("selected");
+          } else if (!$(this).is("ul") && $(this).children("a").length === 0) {
+            $(this).addClass("selected");
+          } else if ($(this).is("ul")) {
+            $(this).addClass("in");
+          }
+        });
+
+        element.addClass("active");
+        $("#sidebarnav a").on("click", function (e) {
+          if (!$(this).hasClass("active")) {
+            // hide any open menus and remove all other classes
+            $("ul", $(this).parents("ul:first")).removeClass("in");
+            $("a", $(this).parents("ul:first")).removeClass("active");
+
+            // open our new menu and add the open class
+            $(this).next("ul").addClass("in");
+            $(this).addClass("active");
+          } else if ($(this).hasClass("active")) {
+            $(this).removeClass("active");
+            $(this).parents("ul:first").removeClass("active");
+            $(this).next("ul").removeClass("in");
+          }
+        });
+        $("#sidebarnav >li >a.has-arrow").on("click", function (e) {
+          e.preventDefault();
+        });
+      });
+    </script>
+  </body>
+</html>
