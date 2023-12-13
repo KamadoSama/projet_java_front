@@ -23,10 +23,10 @@ export default function Sidebar() {
               <li className="list-divider"></li>
           
 
-              <li className="sidebar-item login">
+              <li className="sidebar-item ">
                 {" "}
                 <a
-                  className="sidebar-link has-arrow"
+                  className="sidebar-link has-arrow inscription"
                   href=""
                   aria-expanded="false"
                 >
@@ -38,12 +38,12 @@ export default function Sidebar() {
                   className="collapse  first-level base-level-line"
                 >
                   <li className="sidebar-item">
-                    <a href="/login" className="sidebar-link">
+                    <a href="" className="sidebar-link">
                       <span className="hide-menu"> Information rentrée</span>
                     </a>
                   </li>
                   <li className="sidebar-item">
-                    <a href="form-input-grid.html" className="sidebar-link">
+                    <a href="/student/inscription" className="sidebar-link">
                       <span className="hide-menu">S'insrcit</span>
                     </a>
                   </li>
@@ -84,7 +84,7 @@ export default function Sidebar() {
               <li className="sidebar-item">
                 {" "}
                 <a
-                  className="sidebar-link has-arrow"
+                  className="sidebar-link has-arrow ajoutPfe"
                   href="/"
                   aria-expanded="false"
                 >
@@ -96,7 +96,7 @@ export default function Sidebar() {
                   className="collapse  first-level base-level-line"
                 >
                   <li className="sidebar-item">
-                    <a href="/login" className="sidebar-link">
+                    <a href="/student/ajoutPfe" className="sidebar-link">
                       <span className="hide-menu"> Ajout de thème</span>
                     </a>
                   </li>

@@ -5,7 +5,7 @@ import "./App.css";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import {HomeAdmin } from "./views/admin";
-import { Dashboard, HomeStudent } from "./views/student";
+import { AddPfe, Dashboard, HomeStudent, Inscription } from "./views/student";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -19,6 +19,8 @@ function App() {
 
           <Route path="/student" element={<HomeStudent/>}>
               <Route path=""  element={<Dashboard />}/>
+              <Route path="inscription" element={<Inscription/>} />
+              <Route path="ajoutPfe" element={<AddPfe />} />
           </Route>
         </Routes>
       </Router>
