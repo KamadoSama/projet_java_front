@@ -37,10 +37,10 @@ const AddPfe = () => {
             <input type="text" className="form-control" id="entrepriseNom" name="entrepriseNom" onChange={handleChange} value={formData.entrepriseNom} required />
             </div>
 
-            <div className="mb-3">
+            {/* <div className="mb-3">
             <label htmlFor="juryId" className="form-label">ID du jury</label>
             <input type="number" className="form-control" id="juryId" name="juryId" onChange={handleChange} value={formData.juryId} required />
-            </div>
+            </div> */}
 
             <div className="mb-3">
             <label htmlFor="enseignantNom" className="form-label">Nom de l'enseignant</label>

@@ -2,7 +2,7 @@ import React from "react";
 import { CardInfo } from "../../../components";
 import ReactApexChart from "react-apexcharts";
 
-export function Dashboard() {
+export function StudentDashboard() {
   const allCard = [
     {
       title: "Meilleure moyenne",
@@ -76,16 +76,12 @@ export function Dashboard() {
                 />
               </div>
             </div>
-        
           </div>
         </div>
 
         <div className="col-md-6 col-lg-4 ">
-        <div className="card h-100">
-            <div className="card-body">
-              
-            </div>
-        
+          <div className="card h-100">
+            <div className="card-body"></div>
           </div>
         </div>
       </div>
