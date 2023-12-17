@@ -43,7 +43,7 @@ const AddTeacher = () => {
         toast.current?.show({
           severity: "error",
           summary: "Erreur",
-          detail: "Email ou de passe incorrect",
+          detail: "une erreur est survenue veuillez réessayer plus tard ",
           life: 3000,
         });
       });

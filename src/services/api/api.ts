@@ -1,6 +1,6 @@
 import axios from "axios";
 import WebClient from "../../config/axios";
-import { IEcue, IEducatrice, IEnseignant, ILogin } from "../models/models";
+import { IEcue, IEducatrice, IEnseignant, IEnseigner, ILogin } from "../models/models";
 
 const URL = "http://localhost:8089/";
 export const api = {
@@ -22,7 +22,7 @@ export const api = {
       code: data.code,
       description: data.description,
       credit: data.credit,
-      idSemetre: data.idSemestre,
+      idSemetre: 1,
       idUE: data.idUE,
     });
   },
@@ -68,8 +68,18 @@ export const api = {
   getEducatrice: async () => {
     return await WebClient.get(`${URL}educatrices`);
   },
-  
+
   deleteEducatrice: async (id: number) => {
     return await WebClient.delete(`${URL}educatrices/${id}`);
-  }
+  },
+  addEnseigner: async (data: IEnseigner) => {
+      console.log(data)
+      return await WebClient.post(`${URL}enseigners`, {
+        enseignantId: data.enseignantId,
+        ecueId: data.ecueId,
+        classeId: data.classeId,
+  
+      });
+    }
+
 };

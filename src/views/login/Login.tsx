@@ -24,24 +24,19 @@ export const Login = () => {
   api.loginService(data)
   .then((res)=>{
     toast.current?.show({severity:'success', summary: 'Super', detail:'Bienvenue', life: 3000});
-    console.log(res)
-    if(res.data.role=="etudiant"){
+    console.log(res.data.role)
+    if(res.data.role==="etudiant"){
       
-      saveToken("users","etudiant")
+      saveToken("etudiant","etudiant")
       navigate('/student')
-    }
-
-    if(res.data.role=="educatrice"){
-      saveToken("users","educatrice")
+    }else if(res.data.role==="educateur"){
+      saveToken("educateur","educateur")
       navigate('/educatrice')
-    }
-    if(res.data.role=="admin"){
-      saveToken("users","admin")
+    }else if(res.data.role==="admin"){
+      saveToken("admin","admin")
       navigate('/admin')
-    }
-
- if(res.data.role=="enseignant"){
-      saveToken("users","enseignant")
+    }else if(res.data.role==="enseignant"){
+      saveToken("enseignant","enseignant")
       navigate('/teacher')
     }
   })
@@ -83,7 +78,7 @@ export const Login = () => {
               <input
                 className="input100"
                 type="text"
-                name="email"
+                name="login"
                 placeholder="Login"
                 onChange={(e)=>{setEmail(e.target.value)}}
               />
@@ -100,7 +95,7 @@ export const Login = () => {
               <input
                 className="input100"
                 type="password"
-                name="pass"
+                name="mot de passe"
                 onChange={(e)=>{setPassword(e.target.value)}}
                 placeholder="Mot de passe"
               />

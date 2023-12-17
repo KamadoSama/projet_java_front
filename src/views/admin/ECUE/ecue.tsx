@@ -3,20 +3,21 @@ import React, { useEffect, useRef, useState } from "react";
 import { IEcue } from "../../../services/models/models";
 import { api } from "../../../services/api/api";
 
-interface UE{
-    nom:string;
-    id_UE: number;
+interface UE {
+  nom: string;
+  id_UE: number;
 }
 
 const GestionEcue = () => {
-    const toast = useRef<Toast>(null);
-    const [UE, setUE] = useState<UE[]>([]);
+  const toast = useRef<Toast>(null);
+  const [UE, setUE] = useState<UE[]>([]);
   const [ecueData, setEcueData] = useState<IEcue>({
     nom: "",
     description: "",
     code: "",
     credit: 0,
-    idUE:0
+    idUE: 0,
+    id_ECUE: 0,
   });
 
   useEffect(() => {
@@ -29,7 +30,6 @@ const GestionEcue = () => {
       .catch((error) =>
         console.error("Erreur lors de la récupération des classes:", error)
       );
-
   }, []);
 
   const handleChange = (e: any) => {
@@ -41,7 +41,7 @@ const GestionEcue = () => {
     e.preventDefault();
     console.log("Données du formulaire:", ecueData);
     api
-      .addEcue(ecueData )
+      .addEcue(ecueData)
       .then((res) => {
         toast.current?.show({
           severity: "success",
@@ -56,7 +56,7 @@ const GestionEcue = () => {
         toast.current?.show({
           severity: "error",
           summary: "Erreur",
-          detail: "Email ou de passe incorrect",
+          detail: "une erreur est survenue veuillez réessayer plus tard ",
           life: 3000,
         });
       });
@@ -130,11 +130,12 @@ const GestionEcue = () => {
               >
                 <option selected>Choisir une UE</option>
                 {UE.map((ue) => (
-                  <option key={ue.id_UE} value={ue.id_UE}>{ue.nom}</option>
+                  <option key={ue.id_UE} value={ue.id_UE}>
+                    {ue.nom}
+                  </option>
                 ))}
               </select>
             </div>
-
 
             <div className="mb-3">
               <label htmlFor="credit" className="form-label">

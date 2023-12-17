@@ -32,10 +32,13 @@
       $(function () {
         "use strict";
         var url = window.location + "";
+        console.log(url);
         var path = url.split("/").pop();
+        console.log(path);
         var element = $("ul#sidebarnav a").filter(function () {
           return $(this).hasClass(path); // || url.href.indexOf(this.href) === 0;
         });
+        console.log(element);
         element.parentsUntil(".sidebar-nav").each(function (index) {
           if ($(this).is("li") && $(this).children("a").length !== 0) {
             $(this).children("a").addClass("active");

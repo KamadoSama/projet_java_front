@@ -1,7 +1,13 @@
 import React, { useRef } from "react";
 import { Scroll } from "../../../components";
-
+import { useNavigate } from "react-router";
+import { deleteToken } from "../../../services/Token/TokenStorage";
 export default function Sidebar() {
+  const navigate = useNavigate();
+  const logout =()=>{
+    deleteToken("admin")
+    navigate('/')
+  }
   return (
     <>
       <Scroll />
@@ -46,14 +52,41 @@ export default function Sidebar() {
                   <span className="hide-menu">Gérer enseignant</span>
                 </a>
               </li>
+
+              <li className="list-divider"></li>
+              <li className="sidebar-item">
+                {" "}
+                <a
+                  className="sidebar-link sidebar-link attribution"
+                  href="/admin/attribution"
+                  aria-expanded="false"
+                >
+                  <i data-feather="home" className="feather-icon"></i>
+                  <span className="hide-menu">Attribution</span>
+                </a>
+              </li>
+
+              {/* <li className="list-divider"></li>
+              <li className="sidebar-item">
+                {" "}
+                <a
+                  className="sidebar-link sidebar-link  ecue"
+                  href="/admin/ecue"
+                  aria-expanded="false"
+                >
+                  <i data-feather="home" className="feather-icon"></i>
+                  <span className="hide-menu">Ajouter ECUE</span>
+                </a>
+              </li> */}
              
               <li className="list-divider"></li>
               <li className="sidebar-item">
                 {" "}
                 <a
                   className="sidebar-link sidebar-link"
-                  href="/"
+                
                   aria-expanded="false"
+                  onClick={logout}
                 >
                   <i data-feather="log-out" className="feather-icon"></i>
                   <span className="hide-menu">Se deconnecter</span>

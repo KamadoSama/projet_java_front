@@ -1,7 +1,13 @@
 import React, { useRef } from "react";
 import { Scroll } from "../../../components";
+import { useNavigate } from "react-router";
+import { deleteToken } from "../../../services/Token/TokenStorage";
 export default function Sidebar() {
- 
+  const navigate = useNavigate();
+  const logout =()=>{
+    deleteToken("etudiant")
+    navigate('/')
+  }
   return (
    <>
    <Scroll />
@@ -141,6 +147,7 @@ export default function Sidebar() {
                   className="sidebar-link sidebar-link"
                   href="/"
                   aria-expanded="false"
+                  onClick={logout}
                 >
                   <i data-feather="log-out" className="feather-icon"></i>
                   <span className="hide-menu">Se deconnecter</span>

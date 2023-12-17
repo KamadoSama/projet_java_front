@@ -1,3 +1,5 @@
+import { number } from "yup";
+
 export interface Student {
   id_etudiant: number;
   nom: string;
@@ -33,6 +35,7 @@ export interface IEcue {
   idUE?: number; // Ajoutez ? pour rendre la propriété facultative
   idSemestre?: number; // Ajoutez ? pour rendre la propriété facultative
   credit: number;
+  id_ECUE: number;
 }
 export interface IEnseignant {
   idEnseignant: number;
@@ -48,4 +51,11 @@ export interface IEducatrice {
   prenom: string;
   email: string;
   telephone: string;
+}
+
+export interface IEnseigner {
+  id: number;
+  enseignantId: number;
+  ecueId: number;
+  classeId: number;
 }

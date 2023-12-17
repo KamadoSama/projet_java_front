@@ -9,7 +9,7 @@ export default function AddStudent() {
   const [classes, setClasses] = useState<Classe[]>([]);
   const [niveaux, setNiveaux] = useState<Niveau[]>([]);
   const [formData, setFormData] = useState<Student>({
-    id_etudiant:0 ,
+    id_etudiant: 0,
     nom: "",
     prenom: "",
     email: "",
@@ -18,10 +18,9 @@ export default function AddStudent() {
     villeNaissance: "",
     niveau: "",
     classe: "",
-    matricule:"",
-    
+    matricule: "",
   });
-  const navigate= useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
     apiNiveauAndClasse
       .getClasse()
@@ -60,13 +59,13 @@ export default function AddStudent() {
           life: 3000,
         });
         console.log(res);
-        navigate("../gestionStudent")
+        navigate("../gestionStudent");
       })
       .catch((err) => {
         toast.current?.show({
           severity: "error",
           summary: "Erreur",
-          detail: "Email ou de passe incorrect",
+          detail: "une erreur est survenue veuillez réessayer plus tard ",
           life: 3000,
         });
       });

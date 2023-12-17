@@ -6,40 +6,35 @@ import { Column } from "primereact/column";
 import { Toast } from "primereact/toast";
 import { Button } from "primereact/button";
 
-
 import { Toolbar } from "primereact/toolbar";
 
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 
-
-
 import { apiEducatrice } from "../../../services/api/apiEducatrice";
-import {   IEducatrice } from "../../../services/models/models";
+import { IEducatrice } from "../../../services/models/models";
 import { api } from "../../../services/api/api";
-
 
 interface ColumnMeta {
   field: string;
   header: string;
 }
 
-export default function AddEducatrice () {
+export default function AddEducatrice() {
   let emptyProduct: IEducatrice = {
-    id_educatrice:0,
-    nom:'',
-    prenom:'',
-    email:'',
-    telephone:'',
+    id_educatrice: 0,
+    nom: "",
+    prenom: "",
+    email: "",
+    telephone: "",
   };
   const [ecueData, setEnseignantData] = useState<IEducatrice>({
-    id_educatrice:0,
-    nom:'',
-    prenom:'',
-    email:'',
-    telephone:'',
+    id_educatrice: 0,
+    nom: "",
+    prenom: "",
+    email: "",
+    telephone: "",
   });
-
 
   //call api
 
@@ -52,7 +47,7 @@ export default function AddEducatrice () {
     e.preventDefault();
     console.log("Données du formulaire:", ecueData);
     api
-      .addEducatrice (product )
+      .addEducatrice(product)
       .then((res) => {
         toast.current?.show({
           severity: "success",
@@ -67,22 +62,24 @@ export default function AddEducatrice () {
         toast.current?.show({
           severity: "error",
           summary: "Erreur",
-          detail: "Email ou de passe incorrect",
+          detail: "une erreur est survenue veuillez réessayer plus tard ",
           life: 3000,
         });
       });
   };
 
-
   const cols: ColumnMeta[] = [
-    { field: 'nom', header: 'Nom ' },
-    { field: 'prenom', header: 'Prenom' },
-    { field: 'email', header: 'Email' },
-    { field: 'telephone', header: 'Telephone' },
+    { field: "nom", header: "Nom " },
+    { field: "prenom", header: "Prenom" },
+    { field: "email", header: "Email" },
+    { field: "telephone", header: "Telephone" },
     // { field: 'niveau', header: 'Niveau' },
   ];
 
-  const exportColumns = cols.map((col) => ({ title: col.header, dataKey: col.field }));
+  const exportColumns = cols.map((col) => ({
+    title: col.header,
+    dataKey: col.field,
+  }));
 
   const [products, setProducts] = useState<IEducatrice[]>([]);
   const [productDialog, setProductDialog] = useState<boolean>(false);
@@ -170,23 +167,21 @@ export default function AddEducatrice () {
   const confirmDeleteProduct = (product: IEducatrice) => {
     setProduct(product);
     setDeleteProductDialog(true);
-    console.log("delete", product)
+    console.log("delete", product);
   };
 
   const deleteProduct = () => {
-    
     setDeleteProductDialog(false);
     setProduct(emptyProduct);
     api.deleteEducatrice(product.id_educatrice).then((res) => {
-        toast.current?.show({
-            severity: "success",
-            summary: "Successful",
-            detail: "utilisateur supprimé",
-            life: 3000,
-          });
-          api.getEducatrice().then((res) => setProducts(res.data));
+      toast.current?.show({
+        severity: "success",
+        summary: "Successful",
+        detail: "utilisateur supprimé",
+        life: 3000,
+      });
+      api.getEducatrice().then((res) => setProducts(res.data));
     });
-   
   };
 
   const findIndexById = (id: number) => {
@@ -208,7 +203,7 @@ export default function AddEducatrice () {
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
     for (let i = 0; i < 5; i++) {
-      id += Math.floor(Math.random() );
+      id += Math.floor(Math.random());
     }
 
     return id;
@@ -216,47 +211,51 @@ export default function AddEducatrice () {
   // @ts-ignore
   const exportCSV = (selectionOnly) => {
     dt.current?.exportCSV({ selectionOnly });
-};
+  };
 
-const exportPdf = () => {
-    import('jspdf').then((jsPDF) => {
-        import('jspdf-autotable').then(() => {
-          // @ts-ignore
-            const doc = new jsPDF.default(0, 0);
-            // @ts-ignore
-            doc.autoTable(exportColumns, products);
-            doc.save('utilisateurs.pdf');
-        });
+  const exportPdf = () => {
+    import("jspdf").then((jsPDF) => {
+      import("jspdf-autotable").then(() => {
+        // @ts-ignore
+        const doc = new jsPDF.default(0, 0);
+        // @ts-ignore
+        doc.autoTable(exportColumns, products);
+        doc.save("utilisateurs.pdf");
+      });
     });
-};
+  };
 
-const exportExcel = () => {
-    import('xlsx').then((xlsx) => {
-        const worksheet = xlsx.utils.json_to_sheet(products);
-        const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
-        const excelBuffer = xlsx.write(workbook, {
-            bookType: 'xlsx',
-            type: 'array'
-        });
+  const exportExcel = () => {
+    import("xlsx").then((xlsx) => {
+      const worksheet = xlsx.utils.json_to_sheet(products);
+      const workbook = { Sheets: { data: worksheet }, SheetNames: ["data"] };
+      const excelBuffer = xlsx.write(workbook, {
+        bookType: "xlsx",
+        type: "array",
+      });
 
-        saveAsExcelFile(excelBuffer, 'utilisateurs');
+      saveAsExcelFile(excelBuffer, "utilisateurs");
     });
-};
-// @ts-ignore
-const saveAsExcelFile = (buffer, fileName) => {
+  };
   // @ts-ignore
-    import('file-saver').then((module) => {
-        if (module && module.default) {
-            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-            let EXCEL_EXTENSION = '.xlsx';
-            const data = new Blob([buffer], {
-                type: EXCEL_TYPE
-            });
+  const saveAsExcelFile = (buffer, fileName) => {
+    // @ts-ignore
+    import("file-saver").then((module) => {
+      if (module && module.default) {
+        let EXCEL_TYPE =
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
+        let EXCEL_EXTENSION = ".xlsx";
+        const data = new Blob([buffer], {
+          type: EXCEL_TYPE,
+        });
 
-            module.default.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
-        }
+        module.default.saveAs(
+          data,
+          fileName + "_export_" + new Date().getTime() + EXCEL_EXTENSION
+        );
+      }
     });
-};
+  };
 
   const confirmDeleteSelected = () => {
     setDeleteProductsDialog(true);
@@ -312,9 +311,32 @@ const saveAsExcelFile = (buffer, fileName) => {
   const rightToolbarTemplate = () => {
     return (
       <div className="flex align-items-center justify-content-end gap-2">
-        <Button className="action-btn" type="button" icon="pi pi-file" rounded onClick={() => exportCSV(false)} data-pr-tooltip="CSV" />
-        <Button className="action-btn" type="button" icon="pi pi-file-excel" severity="success" rounded onClick={exportExcel} data-pr-tooltip="XLS" />
-        <Button className="action-btn" type="button" icon="pi pi-file-pdf" severity="warning" rounded onClick={exportPdf} data-pr-tooltip="PDF" />
+        <Button
+          className="action-btn"
+          type="button"
+          icon="pi pi-file"
+          rounded
+          onClick={() => exportCSV(false)}
+          data-pr-tooltip="CSV"
+        />
+        <Button
+          className="action-btn"
+          type="button"
+          icon="pi pi-file-excel"
+          severity="success"
+          rounded
+          onClick={exportExcel}
+          data-pr-tooltip="XLS"
+        />
+        <Button
+          className="action-btn"
+          type="button"
+          icon="pi pi-file-pdf"
+          severity="warning"
+          rounded
+          onClick={exportPdf}
+          data-pr-tooltip="PDF"
+        />
       </div>
     );
   };
@@ -326,7 +348,6 @@ const saveAsExcelFile = (buffer, fileName) => {
           icon="pi pi-pencil"
           rounded
           outlined
-          
           className="mr-2 action-btn"
           onClick={() => editProduct(rowData)}
         />
@@ -346,7 +367,6 @@ const saveAsExcelFile = (buffer, fileName) => {
     <div className="flex flex-wrap gap-2 align-items-center justify-content-between">
       <h4 className="m-0">Rechercher</h4>
       <span className="p-input-icon-left">
-   
         <InputText
           type="search"
           placeholder="Rechercher..."
@@ -415,7 +435,11 @@ const saveAsExcelFile = (buffer, fileName) => {
     <div className="p-3 users mt-5">
       <Toast ref={toast} />
       <div className="card">
-      <Toolbar className="mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
+        <Toolbar
+          className="mb-4"
+          left={leftToolbarTemplate}
+          right={rightToolbarTemplate}
+        ></Toolbar>
         {/*//@ts-ignore */}
         <DataTable
           ref={dt}
@@ -464,7 +488,7 @@ const saveAsExcelFile = (buffer, fileName) => {
       >
         <div className="field">
           <label htmlFor="name" className="font-bold">
-            Nom 
+            Nom
           </label>
           <InputText
             id="email"
@@ -505,7 +529,7 @@ const saveAsExcelFile = (buffer, fileName) => {
             className={classNames({ "p-invalid": submitted && !product.nom })}
           />
         </div>
-        
+
         <div className="field">
           <label htmlFor="description" className="font-bold">
             Telephone
@@ -519,8 +543,6 @@ const saveAsExcelFile = (buffer, fileName) => {
             className={classNames({ "p-invalid": submitted && !product.nom })}
           />
         </div>
-       
-
       </Dialog>
 
       <Dialog
@@ -539,7 +561,11 @@ const saveAsExcelFile = (buffer, fileName) => {
           />
           {product && (
             <span>
-              Êtes vous sûr de vouloir supprimer <b>{product.nom} {product.id_educatrice}</b>?
+              Êtes vous sûr de vouloir supprimer{" "}
+              <b>
+                {product.nom} {product.id_educatrice}
+              </b>
+              ?
             </span>
           )}
         </div>
