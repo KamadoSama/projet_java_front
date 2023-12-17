@@ -38,8 +38,8 @@ export default function Sidebar() {
               <li className="sidebar-item">
                 {" "}
                 <a
-                  className="sidebar-link sidebar-link student"
-                  href="/student"
+                  className="sidebar-link sidebar-link gestionStudent"
+                  href="/educatrice/gestionStudent"
                   aria-expanded="false"
                 >
                   <i data-feather="home" className="feather-icon"></i>

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { PrimeReactProvider } from "primereact/api";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import 'primereact/resources/themes/lara-light-indigo/theme.css'; // theme
 import "./assets/css/style.min.css";
 import "./index.css";

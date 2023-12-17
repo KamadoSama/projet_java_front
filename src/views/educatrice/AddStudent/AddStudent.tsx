@@ -3,11 +3,13 @@ import { apiEducatrice } from "../../../services/api/apiEducatrice";
 import { Toast } from "primereact/toast";
 import { Classe, Niveau, Student } from "../../../services/models/models";
 import { apiNiveauAndClasse } from "../../../services/api/apiNiveauAndClasse";
+import { useNavigate } from "react-router";
 export default function AddStudent() {
   const toast = useRef<Toast>(null);
   const [classes, setClasses] = useState<Classe[]>([]);
   const [niveaux, setNiveaux] = useState<Niveau[]>([]);
   const [formData, setFormData] = useState<Student>({
+    id_etudiant:0 ,
     nom: "",
     prenom: "",
     email: "",
@@ -16,8 +18,10 @@ export default function AddStudent() {
     villeNaissance: "",
     niveau: "",
     classe: "",
+    matricule:"",
+    
   });
-
+  const navigate= useNavigate();
   useEffect(() => {
     apiNiveauAndClasse
       .getClasse()
@@ -56,6 +60,7 @@ export default function AddStudent() {
           life: 3000,
         });
         console.log(res);
+        navigate("../gestionStudent")
       })
       .catch((err) => {
         toast.current?.show({

@@ -208,7 +208,7 @@
 }
 
 body {
-  margin: 0;
+
   font-family: var(--bs-body-font-family);
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
@@ -15953,7 +15953,7 @@ textarea.form-control-lg {
 .page-wrapper > .container-fluid, .page-wrapper > .container-sm, .page-wrapper > .container-md, .page-wrapper > .container-lg, .page-wrapper > .container-xl, .page-wrapper > .container-xxl {
   padding: 35px;
   max-width: 1300px;
-  min-height: calc(100vh - 210px);
+  min-height: 100vh ;
 }
 
 .page-wrapper > .page-breadcrumb {

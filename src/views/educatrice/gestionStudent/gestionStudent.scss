@@ -1,0 +1,39 @@
+.users {
+  .card {
+    background: var(--surface-card);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+  button {
+    padding: 10px 10px !important;
+  }
+  .p-toolbar {
+    padding: 19px !important;
+  }
+  .p-datatable .p-datatable-header {
+
+    
+    border: 1px solid #e5e7eb !important;
+    border-width: 1px 0 1px 0 !important;
+    padding: 1rem 1rem !important;
+    font-weight: 700 !important;
+}
+}
+.mr-2 {
+  margin-right: 5%;
+}
+.p-fileupload-choose {
+  background-color: rgb(107 179 123) !important;
+}
+
+.p-inputtext:enabled:focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: 0 0 0 0.2rem rgb(107 179 123) !important;
+  border-color: rgb(107 179 123) !important;
+}
+
+.action-btn {
+  border-radius: 50% !important;
+}

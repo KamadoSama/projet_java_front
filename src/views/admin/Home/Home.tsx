@@ -5,21 +5,14 @@ import { Outlet } from "react-router";
 
 export default function HomeAdmin() {
   return (
-    <div
-      className="page-wrapper"
-      id="main-wrapper"
-      data-layout="vertical"
-      data-navbarbg="skin6"
-      data-sidebartype="full"
-      data-sidebar-position="fixed"
-      data-header-position="fixed"
-    >
-      <Sidebar />
-      <div className="body-wrapper">
-        <Navbar />
-
-        <Outlet />
-      </div>
-    </div>
+    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+  <Navbar />
+  <Sidebar />
+  <div className="page-wrapper">
+    
+    <Outlet />
+  </div>
+</div>
   );
 }

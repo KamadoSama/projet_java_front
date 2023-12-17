@@ -4,9 +4,7 @@ import { Student } from "../models/models";
 
 const URL = "http://localhost:8089/";
 export const apiEducatrice = {
- 
-
-  addStudent: async (data: Student) => {
+   addStudent: async (data: Student) => {
     console.log(data)
     return await WebClient.post(`${URL}etudiants`, {
       nom: data.nom,
@@ -19,7 +17,12 @@ export const apiEducatrice = {
       password: " ",
       classe:data.classe,
       niveau:data.niveau,
-      
+
     },);
   },
+  
+
+  getAllStudent: async () =>{
+    return await WebClient.get(`${URL}etudiants`)
+  }
 };
